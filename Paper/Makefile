@@ -1,4 +1,4 @@
-name = CARBON
+name = Prospectus
 all:
 	pdflatex  --shell-escape $(name).tex
 	pdflatex  --shell-escape $(name).tex

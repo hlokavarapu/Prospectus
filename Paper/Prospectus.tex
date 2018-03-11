@@ -1,0 +1,105 @@
+\documentclass[review]{elsarticle}
+%\documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+\usepackage{hyperref,listings}
+\usepackage{epsf,epsfig,subfigure}
+
+\usepackage{lineno,subfigure,pgfplots,epsf,graphicx,color,ulem}
+\usepackage{amsmath,amsfonts,amsthm,multirow}
+
+\usepackage{setspace}
+
+%\usepackage[version=4]{mhchem}
+
+\usepackage{pbox}
+
+\modulolinenumbers[5]
+\journal{Earth and Planetary Science Letters}
+\bibliographystyle{elsarticle/elsarticle-harv}\biboptions{authoryear}
+%%%configure for insert code
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+% Shorthand for blue text for ADDED TEXT
+\newcommand{\txtblue}[1]{\textcolor{blue}{#1}}
+\newcommand{\txtred}[1]{\textcolor{red}{#1}}
+\newcommand{\txtgreen}[1]{\textcolor{green}{#1}}
+\newcommand{\dd}[1]{\textcolor{red}{\sout{#1}}}
+
+\graphicspath{ {FIGURES/} }
+
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+%%%%%%%
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bes}{\begin{equation*}}
+\newcommand{\ees}{\end{equation*}}
+\newcommand{\bse}{\begin{subequations}}
+\newcommand{\ese}{\end{subequations}}
+\newcommand{\dt}{\triangle t}
+
+\newcommand{\rfig}[1]{Fig.~\ref{#1}}
+\newcommand{\rtab}[1]{Tab.~\ref{#1}}
+%\newcommand{\req}[1]{Eq. \ref{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\upperRomannumeral}[1]{\uppercase\expandafter{\romannumeral#1}}
+%%%%%%
+\usepackage{caption}
+\DeclareCaptionFont{figureCaptionSize}{\fontsize{9}{7.3}\selectfont}
+\captionsetup{font=figureCaptionSize}
+%\usepackage[font=xipt,labelfont=bf]{caption}
+%%%%%%
+%\usepackage{setspace}
+%\doublespacing
+\linespread{2.0}
+
+\begin{document}
+\begin{frontmatter}
+%%%%%%%%%%%%%%%%%%%%%%%
+%Gummi|065|=)
+\title{\textbf{The Evolution of Deep Carbon: A Reservoir Model}}
+%% Group authors per affiliation:
+\address[address1]{Department of Earth and Planetary Sciences, University of California, Davis, CA 95616, USA}
+
+\author[address1]{Harsha Lokavarapu \corref{HL}}
+\cortext[HL]{Corresponding Author}
+\ead{hlokavarapu@ucdavis.edu}
+
+\author[address1]{Louise H. Kellogg}
+\date{}
+%%%%%%%%
+\begin{abstract}
+
+\end{abstract}
+%%%%%%%%
+%%%%%%%%
+\end{frontmatter}
+
+\section{Reservoirs and Fluxes}
+\input{TEX/ReservoirsAndFluxes}
+
+\section{Reservoir Model}
+\input{TEX/ReservoirModel}
+\newpage
+\section*{References}
+ 
+\bibliography{Prospectus}
+
+\end{document}

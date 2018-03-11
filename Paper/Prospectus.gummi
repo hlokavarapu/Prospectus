@@ -1,0 +1,8 @@
+version=0.6.0
+typesetter=pdflatex
+steps=texpdf
+root=/home/harsha_lv/Desktop/Prospectus/Paper/Prospectus.tex
+
+file=/home/harsha_lv/Desktop/Prospectus/Paper/Prospectus.bib
+file=/home/harsha_lv/Desktop/Prospectus/Paper/TEX/ReservoirModel.tex
+file=/home/harsha_lv/Desktop/Prospectus/Paper/TEX/ReservoirsAndFluxes.tex
