@@ -1,4 +1,4 @@
-name = UreyReaction
+name = SlideDeck 
 all:
 	pdflatex  --shell-escape $(name).tex
 	biber $(name)
