@@ -1,5 +1,86 @@
-Due to conservation of mass, we have
+We first consider the mantle reservoir. We assume that carbon can be added to the mantle from the atmosphere early in Earth's history. This is the hypothesis set forth by Sleep and Zahnle (2001). Since little is known about the time dependence of this process we assume that the rate of mass addition decays exponentially with the age of the Earth. We also assume there is no significant transfer of carbon between the mantle and continental crustal reservoirs. This is consistent with association of carbon in the continental crustal reservoir and carbon in the atmosphere.
+
+With these assumptions the mass of carbon in the mantle reservoir $M_{cm}(t)$ is given as a function of time by
 
 \begin{equation}
-  ^cM(t) = \;^cM_{c}(t) + \,^cM_{m}(t) + \,^cM_{cc}(t) + \,^cM_{o}(t) + \,^cM_{a}(t) 
+  M_{cm}(t) = M_{cm0} + (M_{cmp} - M_{cm0}) (1 - e^{-\frac{t}{\tau_{am}}})
 \end{equation}
+
+where time is measured forward from the time of core formation ($t=0$) to the present ($t=4.4$ Gyr). The initial mass of carbon in the mantle is $M_{cm0}$, the present mass of carbon in the mantle is $M_{cmp}$, and the time constant for the loss of carbon from the atmosphere to the mantle is $\tau_{am}$. There is considerable uncertainty in the value of $\tau_{am}$ but on the basis of our previous discussion we take $\tau_{am} = 2 \times 10^8$ yrs.
+
+We also require that the total mass of carbon in the three large reservoirs be constant over time. This balance between $t=0$ and $t_p$, requires that
+
+\begin{equation}
+  M_{cm0} = M_{cmp} + M_{cccp} - M_{ca0}
+\end{equation}
+
+where $M_{ca0}$ is the mass of carbon in the atmosphere at $t=0$ and $M_{cccp}$ is the mass of carbon in the continental crust at $t=t_p$. The continental crust did not exist at $t=0$ so that $M_{ccc0}=0$. As we have discussed the present mass of carbon in the atmosphere is negligible compared with the carbon masses in the mantle and the continental crust so that it is appropriate to take $M_{cap}=0$ in our mass balance. Eliminating $M_{cm0}$ we obtain an expression for the mass of carbon in the mantle as a function of time
+
+\begin{equation}
+  M_{cm}(t) = M_{cmp} + M_{cccp} - M_{ca0} + (M_{ca0} - M_{cccp}) (1 - e^{-\frac{t}{\tau_{am}}})
+\end{equation}
+
+To obtain the dependence of $M_{cm}$ on time we must specify $M_{cmp}$, $M_{cccp}$, $M_{ca0}$, and $\tau_{am}$.
+
+
+We next consider the continental crust reservoir. Our approach is based on the hypothesis that carbon in the continental crust was primarily extracted from the atmosphere through the application of the Urey equation shortly after the first formation of continental crust. We specify that the continental crust began to form at $t=t_{cc0}$. Prior to this time there was no carbon in the continental crust so that
+
+\begin{equation}
+  M_{ccc} = 0 \quad \text{for} \quad 0 < t < t_{cc0}
+\end{equation}
+
+For our analysis of the evolution of major carbon reservoirs we assume that at $t=t_{cc0}$ the mass of carbon in the atmosphere was equal to the present mass of carbon in the continental crust $M_{cccp}$. We model the loss of carbon from the atmosphere with the growth equation
+
+\begin{equation}
+    \frac{d M_{ccc}(t)}{d t} = \frac{1}{\tau_{acc}} [M_{cccp} - M_{ccc}(t)]
+\end{equation}
+
+which is valid for the period $t_{cc0} < t < t_p$ and has the initial condition $M_{ccc} = 0$ at $t = t_{cccp}$. The applicable solution of the growth equation is
+
+\begin{equation}
+    M_{ccc}(t) = M_{cccp} (1 - e^{-\frac{(t-t_{cc0})}{\tau_{acc}}} )
+\end{equation}
+
+The mass of carbon in the continental crust grows exponentially with a time constant $\tau_{acc}$.
+
+Finally we consider the atmosphere reservoir. As previously stated the sum of the carbon masses in the three large reservoirs is constant. We first consider the time period $0 < t < t_{cc0}$. During this period we have $M_{ccc}=0$ so that we can write
+
+\begin{equation}
+    M_{ca}(t) = M_{ca0} + M_{cm0} - M_{cm}(t)
+\end{equation}
+
+since we require that the total mass of carbon in the three large reservoirs be constant over time between $t=0$ and $t_p$,
+
+\begin{equation}
+  M_{ca0} + M_{cm0} = M_{cmp} + M_{cccp}
+\end{equation}
+
+substitution gives 
+
+\begin{equation}
+    M_{ca}(t) = M_{cmp} + M_{cccp} - M_{cm}(t)
+\end{equation}
+
+and substitution of $M_{cm}$(t) gives
+
+\begin{equation}
+    M_{ca}(t) = M_{ca0} - (M_{ca0} - M_{cccp})(1 - e^{\frac{-t}{\tau_{ca}}})
+\end{equation}
+
+for the period $0 < t < t_{cc0}$.
+
+We next consider the time period $t_{cc0} < t < t_{p}$. During this period a mass balance gives
+
+\begin{equation}
+    M_{ca}(t) = M_{cmp} - M_{cm} (t) + M_{cccp} - M_{ccc} (t)
+\end{equation}
+
+since for the large reservoir carbon mass balance we can take $M_{cap} = 0$. Substitution of $M_{cm}(t)$ and substitution of $M_{ccc}(t)$ gives
+
+\begin{equation}
+    M_{ca}(t) = (M_{ca0} - M_{cccp})e^{-\frac{t}{\tau_{am}}} + M_{cccp} e^{-\frac{(t-t_{cc0})}{\tau_{acc}}}
+\end{equation}
+
+for the period $t_{cc0} < t < t_p$.
+
+
