@@ -1,98 +1,104 @@
-Due to the numerous processes associated with the deep carbon cycle, precise quantitaive measurements over the lifetime of Earth are lacking. Therefore, simpliyfing the model to the basic set of reservoirs and/or fluxes is vital otherwise the results maybe meaningless. 
+In order to model the time evolution of carbon cycle, we construct a simplified reservoir model which includes three reservoirs: the atmosphere, continental crust and the mantle. A list of symbols used to describe the reservoir model is shown in Table.~\ref{Table:List of Symbols}. 
 
-In order to test our hypothesis, we construct a reservoir model taking into consideration some of the constraints opting for simplicity due to the numerous uncertainities revolving around the carbon cycle. First, we examine the mantle reservoir. We do not take into consideration the core in our reservoir model as there is little to no evidence of transport of carbon between the core and the mantle. Next, we consider the whole mantle as a homogeneous reservoir. Since we are modeling the solid Earth carbon cycle, we do not take into account any of the surficial reservoirs and associated fluxes excluding the atmosphere. The abundances of carbon are taken from \citet{KLH-TDL-WM:2017} and are shown in Table.~\ref{Table:Masses of carbon in Earth's reservoirs}.
+\begin{table}[h!]
+    \centering
+    \caption{A list of symbols used in this paper.}
+    \scalebox{0.75}{
+    \begin{tabular}{lll}
+        \hline
+        Symbol       & Quantity                                             & Unit   \\
+        \hline
+        $t$          &Time                                                  & yr     \\
+        $t_0$        &Initial time starting post giant-moon forming impact  & yr     \\ 
+        $t_{cc0}$    &Starting time of continental crust formation          & yr     \\   
+        $t_p$        &Present time                                          & yr     \\
+        $^cM_a$      &Mass of carbon in atmosphere (atm.)                   & Gt     \\
+        $^cM_{cc}$   &Mass of carbon in continental crust                   & Gt     \\
+        $^cM_m$      &Mass of carbon in mantle                              & Gt     \\
+        $\tau_{acc}$ &Time constant for Urey reaction                       & yr     \\
+        $\tau_{am}$  &Time constant for loss of carbon from atm. to mantle  & yr     \\
+        $^cJ_{a-m}$  &Flux of carbon from atm. to mantle                    & Mt/yr  \\
+        $^cJ_{a-cc}$ &Flux of carbon due to Urey reaction                   & My/yr  \\
+        $^cJ_{cc-a}$ &Flux of carbon due to island arc volcanism            & Mt/yr  \\
+        $^cJ_{cc-m}$ &Flux of carbon due to subduction                      & Mt/yr  \\
+        $^cJ_{m-a}$  &Flux of carbon due to mid-ocean ridge volcanism       & Mt/yr  \\
+        \hline
+    \end{tabular}
+               }
+    \label{Table:List of Symbols}
+\end{table}
 
-\begin{figure}
+
+The time period of interest is post core crystallization, $t_0$ to present time, $t_p$. Let $t_{cc0}$ be the time at which continental crust formation began. ~\citet{SNH-ZK:2001} hypothesized that from $t_0 \le t \le t_{cc0}$, due to the giant-moon forming impact, the resulting solid surface crust of global magma ocean absorbed a significant portion of carbon from the atmosphere. Episodic foundering of this dense crust transported carbon into Earth's mantle ~\cite{KLH-TDL-WM:2017}. Once the magma ocean cooled down and solidified, we hypothesize that the remaining carbon in the atmosphere became the source of carbon in the continental crust through the Urey reaction. 
+
+In testing this hypothesis, the following ODE system for the time evolution of carbon in the three reservoirs is defined from $t_0 \le t_{cc0} \le t_p$, 
+
+\begin{align}
+  \frac{d\,^cM_a}{dt} &= -^cJ_{a-m} \\
+  \frac{d\,^cM_cc}{dt} &= 0 \\
+  \frac{d\,^cM_m}{dt} &= ^cJ_{a-m}.
+\end{align}
+
+where $^cJ_{a-m} = -\frac{^cM_a}{\tau_{am}}$.
+ 
+From $t_{cc0} \le t \le t_p$, the time evolution of carbon in the three reservoirs is
+
+\begin{align}
+  \frac{d\,^cM_a}{dt} &= -^cJ_{a-cc} + ^cJ_{m-a} + ^cJ_{cc-a}\\
+  \frac{d\,^cM_cc}{dt} &= ^cJ_{a-cc} - ^cJ_{cc-m} - ^cJ_{cc-a}\\
+  \frac{d\,^cM_m}{dt} &= -^cJ_{m-a} + ^cJ_{cc-m}.
+\end{align}
+
+where $^cJ_{a-cc} = -\frac{^cM_a}{\tau_{acc}}$, and the remaining fluxes are approximated as exponential functions. For example, $^cJ_{m-a} = \frac{^cM_m}{^cM_{m}(t_p)} ^cJ_{map}*exp((t_p - t)/t_{cc0})$.
+
+Then by specifying the abundance of carbon in the three reservoirs at present time, which are shown in Table.~\ref{Table:Masses of carbon in Earth's reservoirs} and present fluxes between the reservoirs, the ODE system can be solved. The solution is shown in Fig.~\ref{Fig:ModelM-CC}. Note that we assume that the present estimates for the fluxes between reservoirs is time independent. 
+
+{\renewcommand{\arraystretch}{2.0}% for the vertical padding
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|l|l|c|c|}
+        \hline
+        Reservoir & Symbol & Mass of carbon Gt & Reference \\
+        \hline
+        Core   & $^cM_c$ & $4 \times 10^9$ & ~\citet{DR:2013}  \\
+        \hline
+        Mantle & $^cM_m$ & $2 \times 10^8$ & ~\citet{KLH-TDL-WM:2017}  \\
+        \hline
+        Continental crust & $^cM_{cc}$ & $4.2 \times 10^7$ & ~\citet{KHW:1995} \\
+        \hline
+        Oceans & $^cM_o$ & $3.8 \times 10^4$ & ~\citet{HRA:2007} \\
+        \hline
+        Atmosphere & $^cM_a$ & $8.5 \times 10^2$ & ~\citet{NOAA:2017} \\
+        \hline
+        Total & & $4.24 \times 10^9$ & \\
+        \hline
+    \end{tabular}
+    \caption{\doublespacing Masses of carbon in the Earth's carbon reservoirs (1 Gt $= 10^{12}$ kg) ~\cite{KLH-TDL-WM:2017}.
+    }
+    \label{Table:Masses of carbon in Earth's reservoirs}
+\end{table}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.4]{Figures/ModelM-CC.png}
+  \caption{Preliminary results of the time evolution of carbon cycle where the source of carbon in the continental crust is the mantle.}
+  \label{Fig:ModelM-CC}
+\end{figure}
+
+If the influx of carbon due to subduction is equal to the outflux of carbon due to volcanism, then the mass of carbon in the mantle remains constant. Then, the source of carbon in the continental crust is the atmosphere. The same system of ODE is solved except that $\tau_{am} = 0$ and $^cJ_{cc-m} =\, ^cJ_{m-a}$. The time evolution of carbon in this alternative case is shown in Fig.~\ref{Fig:ModelA-CC}.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.4]{Figures/ModelA-CC.png}
+  \caption{Preliminary results of the time evolution of carbon cycle where the source of carbon in the continental crust is the atmosphere.}
+  \label{Fig:ModelA-CC}
+\end{figure}
+
+A combination of the two limiting cases described above is also plausible. By introducing an independent parameter, we can then control what portion of the source of carbon in the continental crust is attributed to the atmosphere or mantle. A complete flow diagram of the proposed reservoir model is shown in Fig.~\ref{Fig:ReservoirFlowDiagram}
+
+\begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{Figures/RelabelJaniceFlowDiagram.png}
   \caption{A flow diagram showing the different reservoirs and pathways in our constructed box model.}
-  \label{ReservoirFlowDiagram}
+  \label{Fig:ReservoirFlowDiagram}
 \end{figure}
-
-
-We first consider the mantle reservoir. We assume that carbon can be added to the mantle from the atmosphere early in Earth's history. This is the hypothesis set forth by Sleep and Zahnle (2001). Since little is known about the time dependence of this process we assume that the rate of mass addition decays exponentially with the age of the Earth. We also assume there is no significant transfer of carbon between the mantle and continental crustal reservoirs. This is consistent with association of carbon in the continental crustal reservoir and carbon in the atmosphere.
-
-With these assumptions the mass of carbon in the mantle reservoir $^cM_{m}(t)$ is given as a function of time by
-
-\begin{equation}
-  ^cM_{m}(t) = ^cM_{m0} + (^cM_{mp} - ^cM_{m0}) (1 - e^{-\frac{t}{\tau_{am}}})
-\end{equation}
-
-where time is measured forward from the time of core formation ($t=0$) to the present ($t=4.4$ Gyr). The initial mass of carbon in the mantle is $^cM_{m0}$, the present mass of carbon in the mantle is $^cM_{mp}$, and the time constant for the loss of carbon from the atmosphere to the mantle is $\tau_{am}$. There is considerable uncertainty in the value of $\tau_{am}$ but on the basis of our previous discussion we take $\tau_{am} = 2 \times 10^8$ yrs.
-
-We also require that the total mass of carbon in the three large reservoirs be constant over time. This balance between $t=0$ and $t_p$, requires that
-
-\begin{equation}
-  ^cM_{m0} = ^cM_{mp} + ^cM_{ccp} - ^cM_{a0}
-\end{equation}
-
-where $^cM_{a0}$ is the mass of carbon in the atmosphere at $t=0$ and $^cM_{ccp}$ is the mass of carbon in the continental crust at $t=t_p$. The continental crust did not exist at $t=0$ so that $^cM_{cc0}=0$. As we have discussed the present mass of carbon in the atmosphere is negligible compared with the carbon masses in the mantle and the continental crust so that it is appropriate to take $^cM_{ap}=0$ in our mass balance. Eliminating $^cM_{m0}$ we obtain an expression for the mass of carbon in the mantle as a function of time
-
-\begin{equation}
-  ^cM_{m}(t) = ^cM_{mp} + ^cM_{ccp} - ^cM_{a0} + (^cM_{a0} - ^cM_{ccp}) (1 - e^{-\frac{t}{\tau_{am}}})
-\end{equation}
-
-To obtain the dependence of $^cM_{m}$ on time we must specify $^cM_{mp}$, $^cM_{ccp}$, $^cM_{a0}$, and $\tau_{am}$.
-
-
-We next consider the continental crust reservoir. Our approach is based on the hypothesis that carbon in the continental crust was primarily extracted from the atmosphere through the application of the Urey equation shortly after the first formation of continental crust. We specify that the continental crust began to form at $t=t_{cc0}$. Prior to this time there was no carbon in the continental crust so that
-
-\begin{equation}
-  ^cM_{cc} = 0 \quad \text{for} \quad 0 < t < t_{cc0}
-\end{equation}
-
-For our analysis of the evolution of major carbon reservoirs we assume that at $t=t_{cc0}$ the mass of carbon in the atmosphere was equal to the present mass of carbon in the continental crust $^cM_{ccp}$. We model the loss of carbon from the atmosphere with the growth equation
-
-\begin{equation}
-    \frac{d ^cM_{cc}(t)}{d t} = \frac{1}{\tau_{acc}} [^cM_{ccp} - ^cM_{cc}(t)]
-\end{equation}
-
-which is valid for the period $t_{cc0} < t < t_p$ and has the initial condition $^cM_{cc} = 0$ at $t = t_{cccp}$. The applicable solution of the growth equation is
-
-\begin{equation}
-    ^cM_{cc}(t) = ^cM_{ccp} (1 - e^{-\frac{(t-t_{cc0})}{\tau_{acc}}} )
-\end{equation}
-
-The mass of carbon in the continental crust grows exponentially with a time constant $\tau_{acc}$.
-
-Finally we consider the atmosphere reservoir. As previously stated the sum of the carbon masses in the three large reservoirs is constant. We first consider the time period $0 < t < t_{cc0}$. During this period we have $^cM_{cc}=0$ so that we can write
-
-\begin{equation}
-    ^cM_{a}(t) = ^cM_{a0} + ^cM_{m0} - ^cM_{m}(t)
-\end{equation}
-
-since we require that the total mass of carbon in the three large reservoirs be constant over time between $t=0$ and $t_p$,
-
-\begin{equation}
-  ^cM_{a0} + ^cM_{m0} = ^cM_{mp} + ^cM_{ccp}
-\end{equation}
-
-substitution gives 
-
-\begin{equation}
-    ^cM_{a}(t) = ^cM_{mp} + ^cM_{ccp} - ^cM_{m}(t)
-\end{equation}
-
-and substitution of $^cM_{m}$(t) gives
-
-\begin{equation}
-    ^cM_{a}(t) = ^cM_{a0} - (^cM_{a0} - ^cM_{ccp})(1 - e^{\frac{-t}{\tau_{ca}}})
-\end{equation}
-
-for the period $0 < t < t_{cc0}$.
-
-We next consider the time period $t_{cc0} < t < t_{p}$. During this period a mass balance gives
-
-\begin{equation}
-    ^cM_{a}(t) = ^cM_{mp} - ^cM_{m} (t) + ^cM_{ccp} - ^cM_{cc} (t)
-\end{equation}
-
-since for the large reservoir carbon mass balance we can take $^cM_{ap} = 0$. Substitution of $^cM_{m}(t)$ and substitution of $^cM_{cc}(t)$ gives
-
-\begin{equation}
-    ^cM_{a}(t) = (^cM_{a0} - ^cM_{ccp})e^{-\frac{t}{\tau_{am}}} + ^cM_{ccp} e^{-\frac{(t-t_{cc0})}{\tau_{acc}}}
-\end{equation}
-
-for the period $t_{cc0} < t < t_p$.
-
-
