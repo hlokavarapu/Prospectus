@@ -1,16 +1,25 @@
 \documentclass[review]{elsarticle}
 %\documentclass[final,5p,times,twocolumn,authoryear]{elsarticle}
+\usepackage[margin=1in]{geometry}
 \usepackage{hyperref,listings}
-\usepackage{epsf,epsfig,subfigure}
+\usepackage{epsf,epsfig,subcaption}
 
-\usepackage{lineno,subfigure,pgfplots,epsf,graphicx,color,ulem}
+\usepackage{lineno,pgfplots,epsf,graphicx,color,ulem}
 \usepackage{amsmath,amsfonts,amsthm,multirow}
 
 \usepackage{setspace}
 
 %\usepackage[version=4]{mhchem}
  
-\usepackage{pbox}
+\usepackage{pbox} 
+
+\makeatletter
+\def\ps@pprintTitle{%
+ \let\@oddhead\@empty
+ \let\@evenhead\@empty
+ \def\@oddfoot{\centerline{\thepage}}%
+ \let\@evenfoot\@oddfoot}
+\makeatother
 
 \modulolinenumbers[5]
 \journal{Earth and Planetary Science Letters}
@@ -18,7 +27,7 @@
 %%%configure for insert code
 
 
-\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{dkgreen}{rgb}{0,0.6,0} 
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 % Shorthand for blue text for ADDED TEXT
@@ -60,6 +69,11 @@
 %\newcommand{\req}[1]{Eq. \ref{#1}}
 %%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\upperRomannumeral}[1]{\uppercase\expandafter{\romannumeral#1}}
+
+%%%%%%
+\newcommand\cflux[2]{\mbox{${^CJ_{#1\,#2}}$}}
+\newcommand\flux[2]{\mbox{${J_{#1\,#2}}$}}
+\newcommand\mass[1]{\mbox{${^CM_{#1}}$}}
 %%%%%%
 \usepackage{caption}
 \DeclareCaptionFont{figureCaptionSize}{\fontsize{9}{7.3}\selectfont}
@@ -74,7 +88,7 @@
 \begin{frontmatter}
 %%%%%%%%%%%%%%%%%%%%%%%
 %Gummi|065|=)
-\title{\textbf{The Evolution of Deep Carbon: A Reservoir Model}}
+\title{\textbf{The Evolution of Deep Carbon and Proposal of Generalized Reservoir Modeling Framework}}
 %% Group authors per affiliation:
 \address[address1]{Department of Earth and Planetary Sciences, University of California, Davis, CA 95616, USA}
 
