@@ -1,0 +1,10 @@
+Extension:
+
+.	Computers and Geoscience journal
+.	two chapters to thesis. Should start writing in advance of Jan 1st of 2019.
+.	Jupyter notebook server - prototyping
+.       carbonate sediments in the continental crust
+.       characterizing the uncertainty in estimates to these models
+.	how to distinguish between the different evolutionary curves
+.       should the movement of carbon from the atmosphere into the magma ocean be restricted to the beginning of the formation of the continental crust?
+
